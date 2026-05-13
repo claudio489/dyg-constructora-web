@@ -2,53 +2,134 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon-dyg-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>D&G Constructora SPA | Construccion + Climatizacion + Montaje Industrial - Biobio</title>
-    <meta name="description" content="Constructora D&G SPA - 8+ anos de experiencia en la Region del Biobio. Multiservicio B2B: construccion, climatizacion HVAC y montaje industrial. 60.000+ m2 ejecutados, 3.105 dias sin accidentes. RUP vigente, Codigo SAP CMPC 133764." />
-    <meta name="keywords" content="construccion industrial Biobio, climatizacion industrial Concepcion, montaje de silos Chile, HVAC Los Angeles, constructora Los Angeles, obra publica Biobio, eficiencia energetica industria, aire acondicionado industrial, estructuras metalicas, parque eolico montaje" />
-    <meta name="author" content="Constructora D&G SPA" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://dygconstructora.cl/" />
-
-    <!-- Open Graph / Facebook -->
+    <meta name="description" content="Constructora D&G SPA - Empresa de construccion, climatizacion HVAC y montaje industrial en Los Angeles, Region del Biobio. RUP vigente hasta 2026. 60.000+ m2 construidos." />
+    <meta name="keywords" content="constructora, Los Angeles, Biobio, construccion industrial, climatizacion, HVAC, montaje industrial, estructuras metalicas, obra publica" />
+    <meta name="author" content="D&G Constructora SPA" />
+    <meta property="og:title" content="D&G Constructora SPA | Construccion + Climatizacion + Montaje Industrial" />
+    <meta property="og:description" content="Empresa de construccion, climatizacion HVAC y montaje industrial en Los Angeles, Region del Biobio." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://dygconstructora.cl/" />
-    <meta property="og:title" content="D&G Constructora SPA | Multiservicio B2B - Biobio" />
-    <meta property="og:description" content="Construccion + Climatizacion + Montaje Industrial en un solo contrato. 60.000+ m2, 3.105 dias sin accidentes." />
-    <meta property="og:image" content="https://dygconstructora.cl/proyectos/escuela-el-nogal.webp" />
-    <meta property="og:locale" content="es_CL" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://dygconstructora.cl/" />
-    <meta property="twitter:title" content="D&G Constructora SPA | Multiservicio B2B" />
-    <meta property="twitter:description" content="Construccion + Climatizacion + Montaje Industrial en un solo contrato." />
-    <meta property="twitter:image" content="https://dygconstructora.cl/proyectos/escuela-el-nogal.webp" />
-
-    <!-- Theme -->
-    <meta name="theme-color" content="#0a0f1a" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23f59e0b%22 width=%22100%22 height=%22100%22 rx=%2215%22/><text x=%2250%22 y=%2268%22 font-size=%2245%22 font-weight=%22900%22 text-anchor=%22middle%22 fill=%22%230a0f1a%22>D&G</text></svg>" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <meta property="og:url" content="https://dygconstructora.cl" />
+    <meta property="og:image" content="https://dygconstructora.cl/logo-dyg.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/icon-dyg-192.png" />
     <script type="module" crossorigin src="/assets/index-DTMs88zF.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BVh_F63r.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>if(location.hash==='#deck')location.replace('/deck.html')</script>
+  </body>
+</html>
+ COMERCIAL 2026 - D&G Constructora SPA          -->
+    <!-- Este script intercepta:                                       -->
+    <!--   1. Menu "Deck" -> redirige a /deck.html                    -->
+    <!--   2. Boton "Descargar Deck (PDF)" -> abre PDF en nueva pestana -->
+    <!-- ============================================================ -->
     <script>
-      (function() {
-        if (window.location.hash === '#deck') window.location.replace('/deck.html');
-        document.addEventListener('click', function(e) {
-          var a = e.target.closest('a');
-          if (a && a.getAttribute('href') === '#deck') {
+    (function() {
+      "use strict";
+
+      var PDF_URL = "/DG_Constructora_Deck_2026.pdf";
+      var DECK_PAGE = "/deck.html";
+      var isDeckButton = function(el) {
+        if (!el) return false;
+        var text = (el.textContent || "").toLowerCase().trim();
+        return text.indexOf("descargar deck") !== -1 && text.indexOf("pdf") !== -1;
+      };
+      var isDeckMenu = function(el) {
+        if (!el) return false;
+        var href = (el.getAttribute("href") || "").toLowerCase();
+        var text = (el.textContent || "").toLowerCase().trim();
+        return (href === "#deck" || href === "/#deck") && text.length < 15;
+      };
+
+      // ===== ESTRATEGIA 1: Interceptar en fase CAPTURE (antes que React) =====
+      document.addEventListener("click", function(e) {
+        var el = e.target;
+        // Buscar en el target y hasta 5 padres
+        for (var i = 0; i < 5 && el; i++) {
+          if (isDeckButton(el)) {
             e.preventDefault();
-            window.location.href = '/deck.html';
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            window.open(PDF_URL, "_blank");
+            return;
+          }
+          if (isDeckMenu(el)) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            window.location.href = DECK_PAGE;
+            return;
+          }
+          el = el.parentElement;
+        }
+      }, true); // true = CAPTURE phase
+
+      // ===== ESTRATEGIA 2: Sobrescribir addEventListener =====
+      // Esto previene que React agregue su propio handler al boton
+      var originalAddEventListener = Element.prototype.addEventListener;
+      Element.prototype.addEventListener = function(type, handler, options) {
+        if (type === "click" && isDeckButton(this)) {
+          // No dejar que React registre su handler
+          // En vez de eso, registrar nuestro propio handler
+          return originalAddEventListener.call(this, type, function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.open(PDF_URL, "_blank");
+          }, options);
+        }
+        return originalAddEventListener.call(this, type, handler, options);
+      };
+
+      // ===== ESTRATEGIA 3: Reescribir el boton cuando aparezca en el DOM =====
+      function fixDeckButton() {
+        var buttons = document.querySelectorAll("button");
+        for (var i = 0; i < buttons.length; i++) {
+          var btn = buttons[i];
+          if (isDeckButton(btn) && !btn._deckFixed) {
+            btn._deckFixed = true;
+            // Reemplazar el boton con uno nuevo que funcione
+            var newBtn = document.createElement("a");
+            newBtn.href = PDF_URL;
+            newBtn.target = "_blank";
+            newBtn.textContent = btn.textContent;
+            newBtn.className = btn.className;
+            newBtn.style.cssText = window.getComputedStyle(btn).cssText;
+            btn.parentNode.replaceChild(newBtn, btn);
+          }
+        }
+      }
+
+      // ===== ESTRATEGIA 4: MutationObserver continuo =====
+      if (typeof MutationObserver !== "undefined") {
+        var observer = new MutationObserver(function() {
+          fixDeckButton();
+          // Tambien reescribir href del menu
+          var links = document.querySelectorAll('a[href="#deck"], a[href="/#deck"]');
+          for (var i = 0; i < links.length; i++) {
+            links[i].setAttribute("href", DECK_PAGE);
           }
         });
-      })();
+        observer.observe(document.documentElement, {
+          childList: true,
+          subtree: true
+        });
+      }
+
+      // ===== ESTRATEGIA 5: Polling continuo =====
+      setInterval(fixDeckButton, 500);
+
+      // ===== Redireccion hash #deck =====
+      if (window.location.hash === "#deck") {
+        window.location.replace(DECK_PAGE);
+      }
+
+    })();
     </script>
   </body>
 </html>
