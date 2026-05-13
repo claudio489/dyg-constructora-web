@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deck Comercial 2026 | D&G Constructora SPA</title>
+<link rel="icon" type="image/png" href="/icon-dyg-192.png">
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#0f172a;color:#fff}
+.header{text-align:center;padding:40px 20px;background:linear-gradient(135deg,#1e3a5f 0%,#0f1b31 100%)}
+.header img{height:60px;margin-bottom:16px;border-radius:12px}
+.header h1{font-size:2rem;font-weight:800}
+.header p{color:#94a3b8;margin-top:8px}
+.actions{display:flex;justify-content:center;gap:12px;padding:20px;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-size:14px}
+.btn-primary{background:#2563eb;color:#fff}.btn-primary:hover{background:#1d4ed8}
+.btn-secondary{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.slides{max-width:900px;margin:0 auto;padding:20px}
+.slide{display:none;background:#fff;border-radius:12px;overflow:hidden;margin-bottom:20px;cursor:pointer}
+.slide.active{display:block}.slide img{width:100%;height:auto;display:block}
+.controls{text-align:center;padding:20px;display:flex;justify-content:center;gap:12px;align-items:center}
+.controls button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px}
+.controls button:hover{background:rgba(255,255,255,.2)}.counter{color:#94a3b8;font-size:14px}
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;justify-content:center;align-items:center}
+.lightbox.active{display:flex}.lightbox img{max-width:95%;max-height:95%;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:24px;line-height:40px;text-align:center}
+.back{text-align:center;padding:20px}.back a{color:#94a3b8;text-decoration:none;font-size:14px}.back a:hover{color:#fff}</style>
+</head>
+<body>
+<div class="header"><img src="/icon-dyg-192.png" alt="D&G"><h1>Deck Comercial 2026</h1><p>D&amp;G Constructora SPA &middot; Construcci&oacute;n + Climatizaci&oacute;n + Montaje Industrial</p></div>
+<div class="actions">
+<a href="/DG_Constructora_Deck_2026.pdf" download class="btn btn-primary">&#11015; Descargar PDF (A4)</a>
+<button onclick="prev()" class="btn btn-secondary">&#10094; Anterior</button>
+<button onclick="next()" class="btn btn-secondary">Siguiente &#10095;</button>
+</div>
+<div class="slides" id="slides"></div>
+<div class="controls"><button onclick="prev()">&#10094;</button><span class="counter" id="counter">1 / 11</span><button onclick="next()">&#10095;</button></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">&times;</button><img id="lightbox-img" src="" alt=""></div>
+<div class="back"><a href="/">&larr; Volver al sitio principal</a></div>
+<script>
+const total=11;let current=0;
+const container=document.getElementById('slides');
+for(let i=1;i<=total;i++){container.innerHTML+=`<div class="slide${i===1?' active':''}" onclick="openLightbox(${i})"><img src="/deck-preview/deck-pagina-${i}.webp" alt="Pagina ${i}" loading="lazy"></div>`;}
+function show(idx){document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('active',i===idx));document.getElementById('counter').textContent=`${idx+1} / ${total}`;current=idx;}
+function next(){show((current+1)%total);}function prev(){show((current-1+total)%total);}
+function openLightbox(i){document.getElementById('lightbox-img').src=`/deck-preview/deck-pagina-${i}.webp`;document.getElementById('lightbox').classList.add('active');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();if(e.key==='Escape')closeLightbox();});
+</script>
+</body>
+</html>
