@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon-dyg-192.png" />
+    <link rel="icon" type="image/png" href="./icon-dyg-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>D&G Constructora SPA | Construccion + Climatizacion + Montaje Industrial - Biobio</title>
     <meta name="description" content="Constructora D&G SPA - Empresa de construccion, climatizacion HVAC y montaje industrial en Los Angeles, Region del Biobio. RUP vigente hasta 2026. 60.000+ m2 construidos." />
@@ -14,122 +14,15 @@
     <meta property="og:url" content="https://dygconstructora.cl" />
     <meta property="og:image" content="https://dygconstructora.cl/logo-dyg.png" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/icon-dyg-192.png" />
-    <script type="module" crossorigin src="/assets/index-DTMs88zF.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BVh_F63r.css">
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="D&G Constructora" />
+    <script type="module" crossorigin src="./assets/index-pwc6BCLu.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-vBOnGEkC.css">
   </head>
   <body>
     <div id="root"></div>
-    <script>if(location.hash==='#deck')location.replace('/deck.html')</script>
-  </body>
-</html>
- COMERCIAL 2026 - D&G Constructora SPA          -->
-    <!-- Este script intercepta:                                       -->
-    <!--   1. Menu "Deck" -> redirige a /deck.html                    -->
-    <!--   2. Boton "Descargar Deck (PDF)" -> abre PDF en nueva pestana -->
-    <!-- ============================================================ -->
-    <script>
-    (function() {
-      "use strict";
-
-      var PDF_URL = "/DG_Constructora_Deck_2026.pdf";
-      var DECK_PAGE = "/deck.html";
-      var isDeckButton = function(el) {
-        if (!el) return false;
-        var text = (el.textContent || "").toLowerCase().trim();
-        return text.indexOf("descargar deck") !== -1 && text.indexOf("pdf") !== -1;
-      };
-      var isDeckMenu = function(el) {
-        if (!el) return false;
-        var href = (el.getAttribute("href") || "").toLowerCase();
-        var text = (el.textContent || "").toLowerCase().trim();
-        return (href === "#deck" || href === "/#deck") && text.length < 15;
-      };
-
-      // ===== ESTRATEGIA 1: Interceptar en fase CAPTURE (antes que React) =====
-      document.addEventListener("click", function(e) {
-        var el = e.target;
-        // Buscar en el target y hasta 5 padres
-        for (var i = 0; i < 5 && el; i++) {
-          if (isDeckButton(el)) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            window.open(PDF_URL, "_blank");
-            return;
-          }
-          if (isDeckMenu(el)) {
-            e.preventDefault();
-            e.stopPropagation();
-            e.stopImmediatePropagation();
-            window.location.href = DECK_PAGE;
-            return;
-          }
-          el = el.parentElement;
-        }
-      }, true); // true = CAPTURE phase
-
-      // ===== ESTRATEGIA 2: Sobrescribir addEventListener =====
-      // Esto previene que React agregue su propio handler al boton
-      var originalAddEventListener = Element.prototype.addEventListener;
-      Element.prototype.addEventListener = function(type, handler, options) {
-        if (type === "click" && isDeckButton(this)) {
-          // No dejar que React registre su handler
-          // En vez de eso, registrar nuestro propio handler
-          return originalAddEventListener.call(this, type, function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            window.open(PDF_URL, "_blank");
-          }, options);
-        }
-        return originalAddEventListener.call(this, type, handler, options);
-      };
-
-      // ===== ESTRATEGIA 3: Reescribir el boton cuando aparezca en el DOM =====
-      function fixDeckButton() {
-        var buttons = document.querySelectorAll("button");
-        for (var i = 0; i < buttons.length; i++) {
-          var btn = buttons[i];
-          if (isDeckButton(btn) && !btn._deckFixed) {
-            btn._deckFixed = true;
-            // Reemplazar el boton con uno nuevo que funcione
-            var newBtn = document.createElement("a");
-            newBtn.href = PDF_URL;
-            newBtn.target = "_blank";
-            newBtn.textContent = btn.textContent;
-            newBtn.className = btn.className;
-            newBtn.style.cssText = window.getComputedStyle(btn).cssText;
-            btn.parentNode.replaceChild(newBtn, btn);
-          }
-        }
-      }
-
-      // ===== ESTRATEGIA 4: MutationObserver continuo =====
-      if (typeof MutationObserver !== "undefined") {
-        var observer = new MutationObserver(function() {
-          fixDeckButton();
-          // Tambien reescribir href del menu
-          var links = document.querySelectorAll('a[href="#deck"], a[href="/#deck"]');
-          for (var i = 0; i < links.length; i++) {
-            links[i].setAttribute("href", DECK_PAGE);
-          }
-        });
-        observer.observe(document.documentElement, {
-          childList: true,
-          subtree: true
-        });
-      }
-
-      // ===== ESTRATEGIA 5: Polling continuo =====
-      setInterval(fixDeckButton, 500);
-
-      // ===== Redireccion hash #deck =====
-      if (window.location.hash === "#deck") {
-        window.location.replace(DECK_PAGE);
-      }
-
-    })();
-    </script>
   </body>
 </html>
