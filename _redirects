@@ -1,0 +1,3 @@
+# SPA fallback: serve index.html for routes handled by React Router
+/deck.html    /index.html   200
+/contacto.html /index.html  200
