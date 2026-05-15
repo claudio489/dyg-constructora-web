@@ -1,3 +1,9 @@
-# SPA fallback: serve index.html for routes handled by React Router
-/deck.html    /index.html   200
-/contacto.html /index.html  200
+# Static assets - serve as-is (Netlify serves existing files first by default)
+/DG_Constructora_Deck_2026.pdf  /DG_Constructora_Deck_2026.pdf  200
+
+# SPA routes handled by React Router
+/deck.html      /index.html   200
+/contacto.html  /index.html   200
+
+# SPA fallback for any other routes
+/*    /index.html   200
